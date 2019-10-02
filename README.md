@@ -3,9 +3,17 @@ Scala library for use "Magma" encryption
 
 ## Build
 
-Use for build solution in jar
+Use for build solution in jar:
 ```sh
 sbt package
+```
+Use for run tests:
+```sh
+// run all tests
+sbt test
+
+//run single test
+sbt test:testOnly *TestClass
 ```
 
 ## Usage example

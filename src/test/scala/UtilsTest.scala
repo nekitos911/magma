@@ -7,11 +7,4 @@ class UtilsTest extends FunSuite {
     val stringHexData = Utils.byteArrayToHexString(byteArr)
     assert(stringHexData == MagmaTest.OPEN_DATA_AS_STRING.mkString(" "))
   }
-
-  test("d") {
-    val arr = Utils.mapFromIntArrayToByteArray(Array (0xfedcba98))
-
-    val a = 0
-  }
-
 }
