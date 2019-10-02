@@ -16,7 +16,7 @@ class MagmaTest extends FunSuite{
     }
 
     // assert, that hex data equals
-    assert(enc._2 == ENCRYPTED_DATA_AS_HEX_STRING.mkString(" "))
+    assert(enc._2 == intArrToHex(ENCRYPTED_DATA))
 
     // decrypted tuple with byte data and hex view (Array: Byte, String)
     val dec = {
@@ -25,7 +25,7 @@ class MagmaTest extends FunSuite{
     }
 
     // assert, that hex data equals
-    assert(dec._2 == OPEN_DATA_AS_STRING.mkString(" "))
+    assert(dec._2 == intArrToHex(OPEN_DATA))
   }
 
   test("cyrillic test") {
@@ -54,10 +54,11 @@ object MagmaTest {
   // DATA FROM GOST Appendix 2
   val KEY = Array(0xffeeddcc, 0xbbaa9988, 0x77665544, 0x33221100, 0xf0f1f2f3, 0xf4f5f6f7, 0xf8f9fafb, 0xfcfdfeff)
   val OPEN_DATA = Array(0xfedcba98, 0x76543210)
-  val OPEN_DATA_AS_STRING = Array("0xfedcba98", "0x76543210")
   val ENCRYPTED_DATA = Array(0x4ee901e5, 0xc2d8ca3d)
-  val ENCRYPTED_DATA_AS_HEX_STRING = Array("0x4ee901e5", "0xc2d8ca3d")
-
 
   val CYRILLIC_OPEN_DATA = "Привет, это простой тест алгоритма"
+
+  def intArrToHex(arr: Array[Int]): String = {
+    arr.map("0x" + _.toHexString).mkString(" ")
+  }
 }
