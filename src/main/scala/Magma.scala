@@ -11,6 +11,8 @@ import scala.annotation.tailrec
   * @param _data input data for enc/dec
   */
 class Magma private (_key: Array[Byte], _data: Array[Byte]) {
+  require(_key.length == 32, s"Wrong key length. Key must be 64 bytes, you entered: ${_key.length}")
+
   private val iterKey = expandKey()
   private val data = padding(_data)
 
@@ -38,13 +40,7 @@ class Magma private (_key: Array[Byte], _data: Array[Byte]) {
   }
 
   private def expandKey(): Array[Array[Byte]] = {
-    @tailrec
-    def appendKey(key: Array[Byte]): Array[Byte] = {
-      if (key.length < 32) appendKey(key ++ key)
-      else key.take(32)
-    }
-
-    val key = appendKey(this._key)
+    val key = this._key
     val step = 4
     val iKey = Array.ofDim[Byte](32, 4)
 

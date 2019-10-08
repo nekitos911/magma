@@ -28,6 +28,13 @@ class MagmaTest extends FunSuite{
     assert(dec._2 == intArrToHex(OPEN_DATA))
   }
 
+  test("wrong key length") {
+    val ex = intercept[IllegalArgumentException] {
+      Magma encipher ("key", "text")
+    }
+    assert(ex.getMessage.contains("key must be 64 bytes"))
+  }
+
   test("cyrillic test") {
     // Create byte arrays of key and data
     val key = mapFromIntArrayToByteArray(KEY)
